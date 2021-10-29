@@ -74,20 +74,19 @@ body {
     cursor: pointer;
 }
 
-
-}
-
-}
 .information {
     /* padding: 50px; */
 }
+
 .information>h4 {
     opacity: 75%;
 }
+
 .information>p {
     text-align: center;
     opacity: 75%;
 }
+
 .serching {
     border-radius: 30px;
     background-color: #F7E7E8;
