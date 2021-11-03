@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
+
+
     <title>Document</title>
 </head>
 
 <body>
-    <div class="main">
+    <div class="container">
+        <div class="header col-12">
+            <div class="row d-flex flex-row justify-content-between">
+                <button id="add"> + </button>
+                <h3>مدیریت کارت ها</h3>
+            </div>
+        </div>
+        <hr>
         <div class="cards">
-            <div class="card" id="card1">
+            <div class="card">
                 <div class="btn">
                     <button class="btn-edit"> ویرایش</button>
                     <button class="btn-delete" onclick="deleteattrebute()">حذف</button>
@@ -21,11 +31,11 @@
                     <h4>بانک ملی</h4>
                     <h4> علیرضا مقدم</h4>
                     <br>
-                    <p>6037-9974-9070-1878</p>
+                    <p>6037997490701878</p>
                 </div>
 
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <div class="btn">
                     <button class="btn-edit"> ویرایش</button>
                     <button class="btn-delete" onclick="deleteattrebute(0)">حذف</button>
@@ -104,16 +114,17 @@
                 </div>
                 <div class="information">
                     <h4>بانک ملی</h4>
-                    <h4>آقای بیاتی </h4>
+                    <h4>آقای براتی </h4>
                     <br>
                     <p>6037-9974-9070-1878</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <input class="serching" type="text" value=" جستجو بر اساس شماره کارت">
         </input>
     </div>
     <script src="index.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 
