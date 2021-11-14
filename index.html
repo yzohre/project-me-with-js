@@ -5,126 +5,200 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/index.css">
 
 
     <title>Document</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header col-12">
-            <div class="row d-flex flex-row justify-content-between">
-                <button id="add"> + </button>
-                <h3>مدیریت کارت ها</h3>
+    <section class="py-1 text-center container">
+        <div class="row py-lg-12">
+            <div class="col-lg-12 col-md-12 mx-auto">
+                <h1 class=" fw-light">ثبت کارت های اعتباری</h1>
+                <p>
+                    <button id="deleteAllData" type="button" class=" btn btn-warning my-2 btn-lg">پاک کردن داده
+                ها</button>
+                    <button id="newCard" type="button" class=" btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">افزودن کارت</button>
+                </p>
             </div>
         </div>
-        <hr>
-        <div class="cards">
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete" onclick="deleteattrebute()">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4> علیرضا مقدم</h4>
-                    <br>
-                    <p>6037997490701878</p>
-                </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
 
-            </div>
-            <!-- <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete" onclick="deleteattrebute(0)">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>زهره یوسفی</h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>فاطمه عاصم </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>الهام شه قاسمی </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>سعید ابراهیمی </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header bg-warning">
+                            <h1 class=" modal-title">اطلاعات کارت</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form class="">
+                                <!-- نام صاحب کارت -->
+                                <div class="mb-3 mt-4">
+                                    <label for="hesabName" class="form-label  fs-2">نام صاحب حساب</label>
+                                    <input id="hesabName" type="text" class="form-control">
+                                </div>
+                                <!-- نام بانک -->
+                                <div class="mb-3 mt-4">
+                                    <label for="bankName" class="form-label  fs-2">نام بانک</label>
+                                    <input id="bankName" type="text" class="form-control">
+                                </div>
+                                <!-- شماره کارت -->
+                                <div class="mb-3 mt-4">
+                                    <label for="cardNumber" class="form-label  fs-2">شماره کارت</label>
+                                    <input id="cardNumber" type="number" class="form-control">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="submitCard" type="button" class="col  btn btn-success btn-lg">ثبت</button>
+                            <button id="closeModal" type="button" class="col  btn btn-danger btn-lg" data-dismiss="modal">لغو</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>علی روشن نیا </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
+            <div>
+                <div id="cardListItems"></div>
             </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>بنیامین پارسا </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="btn">
-                    <button class="btn-edit"> ویرایش</button>
-                    <button class="btn-delete">حذف</button>
-                </div>
-                <div class="information">
-                    <h4>بانک ملی</h4>
-                    <h4>آقای براتی </h4>
-                    <br>
-                    <p>6037-9974-9070-1878</p>
-                </div>
-            </div> -->
+
         </div>
-        <input class="serching" type="text" value=" جستجو بر اساس شماره کارت">
-        </input>
+
     </div>
-    <script src="index.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </main>
+    <div class="row serch11">
+        <div class="serching col-12">
+            <input type="number" placeholder="جستجو..." id="serching1">
+            <button id="btn-serch" onclick=inputeserch()>جستجو</button>
+        </div>
+    </div>
+    <!-- <script src="./assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script>
+        let cardList = [];
+        var cardListExists = localStorage.getItem("cardList");
+        if (cardListExists) {
+            cardList = JSON.parse(localStorage.getItem("cardList"));
+            render(cardList)
+        }
+
+
+        function render(cardList) {
+            cardList.forEach(card => {
+                addCard(card);
+            });
+        }
+
+        function addCard(myCard) {
+            let text;
+            text = `<div class="cardItemParent" id="card${myCard.id}">
+                <div class="cardItemHeader">
+                  <h1 class="persianFont text-center">${myCard.bankName}</h1>
+                </div>
+                <div class="cardItemContent">
+                  <div class="">
+                    <h2 class="persianFont mt-5">${myCard.hesabName}</h2>
+                    <h1 class="persianFont text-center mt-5">${myCard.cardNumber}</h1>
+                  </div>
+                </div>
+                <div class="cardItemFotter">
+                  <div class="cardItemFotterButton cardItemFotterRight col persianFont bg-danger" onclick="deleteData(${myCard.id})">حذف</div>
+                  <div class="cardItemFotterButton cardItemFotterLeft col persianFont bg-warning" onclick="editData(${myCard.id})">تصحیح</div>
+                </div>
+              </div>`;
+            document.getElementById("cardListItems").innerHTML += text;
+        }
+
+        function saveCard() {
+            let hesabName = document.getElementById("hesabName").value;
+            let bankName = document.getElementById("bankName").value;
+            let cardNumber = document.getElementById("cardNumber").value;
+            if (hesabName && bankName && cardNumber) {
+                if (cardNumber.length === 16) {
+
+                    document.getElementById("hesabName").value = "";
+                    document.getElementById("bankName").value = "";
+                    document.getElementById("cardNumber").value = "";
+
+
+                    var id = cardList.length;
+
+                    cardList.push({
+                        id,
+                        hesabName,
+                        bankName,
+                        cardNumber
+                    });
+                    addCard({
+                        id,
+                        hesabName,
+                        bankName,
+                        cardNumber
+                    });
+                    localStorage.setItem("cardList", JSON.stringify(cardList));
+
+
+                    document.getElementById("closeModal").click();
+                } else {
+                    alert("شماره کارت 16 رقمی را وارد کنید");
+                }
+            } else {
+                alert("اطلاعات را کامل وارد کنید");
+            }
+        }
+
+        function deleteData(id) {
+            cardList.splice(id, 1);
+            document.getElementById("cardListItems").innerHTML = ''
+            render(cardList);
+            localStorage.setItem("cardList", JSON.stringify(cardList));
+        }
+
+        function editData(id) {
+
+            render(cardList);
+            cardList[id].addCard = myCard;
+        }
+
+        function deleteAllCards() {
+            localStorage.clear();
+            document.getElementById("cardListItems").innerHTML = "";
+        }
+
+        document.getElementById("submitCard").onclick = saveCard;
+        document.getElementById("deleteAllData").onclick = deleteAllCards;
+        const serch = document.getElementById("btn-serch");
+
+
+
+
+
+        function inputeserch() {
+            var serch = document.getElementById("serching1").value;
+            if (serch > 0) {
+                var findedItems = cardList.filter(
+                    item => {
+                        return item.cardNumber.includes(serch);
+                    }
+                )
+            }
+
+            let id = cardList.findIndex(x => x.cardNumber == findedItems[0].cardNumber)
+            let myElement = document.getElementById('card' + id)
+            myElement.className = 'bg-success'
+
+        }
+    </script>
 
 </body>
 
