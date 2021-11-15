@@ -42,15 +42,15 @@
                         </div>
                         <div class="modal-body">
                             <form class="">
-                                <!-- نام صاحب کارت -->
-                                <div class="mb-3 mt-4">
-                                    <label for="hesabName" class="form-label  fs-2">نام صاحب حساب</label>
-                                    <input id="hesabName" type="text" class="form-control">
-                                </div>
                                 <!-- نام بانک -->
                                 <div class="mb-3 mt-4">
                                     <label for="bankName" class="form-label  fs-2">نام بانک</label>
                                     <input id="bankName" type="text" class="form-control">
+                                </div>
+                                <!-- نام صاحب کارت -->
+                                <div class="mb-3 mt-4">
+                                    <label for="hesabName" class="form-label  fs-2">نام صاحب حساب</label>
+                                    <input id="hesabName" type="text" class="form-control">
                                 </div>
                                 <!-- شماره کارت -->
                                 <div class="mb-3 mt-4">
@@ -83,8 +83,50 @@
             <button id="btn-serch" onclick=inputeserch()>جستجو</button>
         </div>
     </div>
+    <div class="editmodal">
+        <!-- Modal -->
+        <div class="modal fade" id="myeditmodal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h1 class=" modal-title">اطلاعات کارت</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="">
+
+                            <!-- نام بانک -->
+                            <div class="mb-3 mt-4">
+                                <label for="bankName" class="form-label  fs-2">نام بانک</label>
+                                <input id="bankName1" type="text" class="form-control">
+                            </div>
+                            <!-- نام صاحب کارت -->
+                            <div class="mb-3 mt-4">
+                                <label for="hesabName" class="form-label  fs-2">نام صاحب حساب</label>
+                                <input id="hesabName1" type="text" class="form-control">
+                            </div>
+                            <!-- شماره کارت -->
+                            <div class="mb-3 mt-4">
+                                <label for="cardNumber" class="form-label  fs-2">شماره کارت</label>
+                                <input id="cardNumber1" type="number" class="form-control">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="submitEdit" type="button" class="col  btn btn-success btn-lg">ثبت</button>
+                        <button id="closeModal" type="button" class="col  btn btn-danger btn-lg" data-dismiss="modal">لغو</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <!-- <script src="./assets/dist/js/bootstrap.bundle.min.js"></script> -->
     <script>
+        $('#myeditmodal').on('shown.bs.modal', function() {
+            $('#myInput').trigger('focus')
+        })
         let cardList = [];
         var cardListExists = localStorage.getItem("cardList");
         if (cardListExists) {
@@ -98,6 +140,7 @@
                 addCard(card);
             });
         }
+
 
         function addCard(myCard) {
             let text;
@@ -113,41 +156,35 @@
                 </div>
                 <div class="cardItemFotter">
                   <div class="cardItemFotterButton cardItemFotterRight col persianFont bg-danger" onclick="deleteData(${myCard.id})">حذف</div>
-                  <div class="cardItemFotterButton cardItemFotterLeft col persianFont bg-warning" onclick="editData(${myCard.id})">تصحیح</div>
+                  <div class="cardItemFotterButton cardItemFotterLeft col persianFont bg-warning" onclick="editData(${myCard.id})"data-toggle="modal" data-target="#myeditmodal" >تصحیح</div>
                 </div>
               </div>`;
             document.getElementById("cardListItems").innerHTML += text;
         }
 
         function saveCard() {
-            let hesabName = document.getElementById("hesabName").value;
             let bankName = document.getElementById("bankName").value;
+            let hesabName = document.getElementById("hesabName").value;
             let cardNumber = document.getElementById("cardNumber").value;
-            if (hesabName && bankName && cardNumber) {
-                if (cardNumber.length === 16) {
-
-                    document.getElementById("hesabName").value = "";
+            if (bankName && hesabName && cardNumber) {
+                if (cardNumber.length === 4) {
                     document.getElementById("bankName").value = "";
+                    document.getElementById("hesabName").value = "";
                     document.getElementById("cardNumber").value = "";
-
-
                     var id = cardList.length;
-
                     cardList.push({
                         id,
-                        hesabName,
                         bankName,
+                        hesabName,
                         cardNumber
                     });
                     addCard({
                         id,
-                        hesabName,
                         bankName,
+                        hesabName,
                         cardNumber
                     });
                     localStorage.setItem("cardList", JSON.stringify(cardList));
-
-
                     document.getElementById("closeModal").click();
                 } else {
                     alert("شماره کارت 16 رقمی را وارد کنید");
@@ -157,6 +194,8 @@
             }
         }
 
+        const editData = () => {}
+
         function deleteData(id) {
             cardList.splice(id, 1);
             document.getElementById("cardListItems").innerHTML = ''
@@ -164,10 +203,35 @@
             localStorage.setItem("cardList", JSON.stringify(cardList));
         }
 
-        function editData(id) {
+        function submitEdit(id) {
+            let bankNameedit = document.getElementById("bankName1").value;
+            let hesabNameedit = document.getElementById("hesabName1").value;
+            let cardNumberedit = document.getElementById("cardNumber1").value;
+            if (bankNameedit && hesabNameedit && cardNumberedit) {
+                if (cardNumberedit.length === 4) {
 
-            render(cardList);
-            cardList[id].addCard = myCard;
+                    var id = cardList.findIndex(e => {
+                            return e.hesabName == hesabNameedit && e.bankName == bankNameedit && e.cardNumber == cardNumberedit
+                        })
+                        // cardList[id].bankName = bankNameedit;
+                        // cardList[id].hesabName = hesabNameedit;
+                        // cardList[id].cardNumber = cardNumberedit;
+
+                    document.getElementById("bankName1").value = "";
+                    document.getElementById("hesabName1").value = "";
+                    document.getElementById("cardNumber1").value = "";
+                    document.getElementById("cardListItems").innerHTML = ''
+                    $('#myeditmodal').modal('hide');
+                    localStorage.setItem("cardList", JSON.stringify(cardList));
+                    render(cardList)
+
+                } else {
+                    alert("شماره کارت 16 رقمی را وارد کنید");
+                }
+            } else {
+                alert("اطلاعات را کامل وارد کنید");
+            }
+
         }
 
         function deleteAllCards() {
@@ -178,8 +242,7 @@
         document.getElementById("submitCard").onclick = saveCard;
         document.getElementById("deleteAllData").onclick = deleteAllCards;
         const serch = document.getElementById("btn-serch");
-
-
+        document.getElementById("submitEdit").onclick = submitEdit;
 
 
 
@@ -196,7 +259,6 @@
             let id = cardList.findIndex(x => x.cardNumber == findedItems[0].cardNumber)
             let myElement = document.getElementById('card' + id)
             myElement.className = 'bg-success'
-
         }
     </script>
 
