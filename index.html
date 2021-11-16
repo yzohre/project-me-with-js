@@ -144,7 +144,7 @@
 
         function addCard(myCard) {
             let text;
-            text = `<div class="cardItemParent" id="card${myCard.id}">
+            text = `<div class="cardItemParent" >
                 <div class="cardItemHeader">
                   <h1 class="persianFont text-center">${myCard.bankName}</h1>
                 </div>
@@ -172,6 +172,9 @@
                     document.getElementById("hesabName").value = "";
                     document.getElementById("cardNumber").value = "";
                     var id = cardList.length;
+                    // var id = cardList.findIndex(e => {
+                    //     return e.id == e.id
+                    // })
                     cardList.push({
                         id,
                         bankName,
@@ -209,13 +212,14 @@
             let cardNumberedit = document.getElementById("cardNumber1").value;
             if (bankNameedit && hesabNameedit && cardNumberedit) {
                 if (cardNumberedit.length === 4) {
-
+                    // var id = cardList.length;
                     var id = cardList.findIndex(e => {
-                            return e.hesabName == hesabNameedit && e.bankName == bankNameedit && e.cardNumber == cardNumberedit
-                        })
-                        // cardList[id].bankName = bankNameedit;
-                        // cardList[id].hesabName = hesabNameedit;
-                        // cardList[id].cardNumber = cardNumberedit;
+                        return e.bankName == bankNameedit
+                    })
+                    console.log(id);
+                    cardList[id].bankName = bankNameedit;
+                    cardList[id].hesabName = hesabNameedit;
+                    cardList[id].cardNumber = cardNumberedit;
 
                     document.getElementById("bankName1").value = "";
                     document.getElementById("hesabName1").value = "";
